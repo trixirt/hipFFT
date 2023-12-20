@@ -29,18 +29,18 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Consider removing this in the future
 # This should appear before the project command, because it does not use FORCE
-if( WIN32 )
-  set( CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/package" CACHE PATH
-    "Install path prefix, prepended onto install directories" )
-else()
-  set( CMAKE_INSTALL_PREFIX "/opt/rocm" CACHE PATH
-    "Install path prefix, prepended onto install directories" )
-endif()
+#if( WIN32 )
+#  set( CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/package" CACHE PATH
+#    "Install path prefix, prepended onto install directories" )
+#else()
+#  set( CMAKE_INSTALL_PREFIX "/opt/rocm" CACHE PATH
+#    "Install path prefix, prepended onto install directories" )
+#endif()
 
 
 # Workarounds..
-list( APPEND CMAKE_PREFIX_PATH /opt/rocm/llvm /opt/rocm )
-list( APPEND CMAKE_MODULE_PATH ${ROCM_PATH}/lib/cmake/hip /opt/rocm/lib/cmake/hip /opt/rocm/hip/cmake )
+#list( APPEND CMAKE_PREFIX_PATH /opt/rocm/llvm /opt/rocm )
+#list( APPEND CMAKE_MODULE_PATH ${ROCM_PATH}/lib/cmake/hip /opt/rocm/lib/cmake/hip /opt/rocm/hip/cmake )
 
 # This has to be initialized before the project() command appears
 # Set the default of CMAKE_BUILD_TYPE to be release, unless user specifies with -D.
