@@ -27,10 +27,10 @@
 #include <string>
 #include <vector>
 
-#include "../../../clients/rocFFT/shared/arithmetic.h"
-#include "../../../clients/rocFFT/shared/gpubuf.h"
-#include "../../../clients/rocFFT/shared/ptrdiff.h"
-#include "../../../clients/rocFFT/shared/rocfft_hip.h"
+#include <rocfft/shared/arithmetic.h>
+#include <rocfft/shared/gpubuf.h>
+#include <rocfft/shared/ptrdiff.h>
+#include <rocfft/shared/rocfft_hip.h>
 
 #define ROC_FFT_CHECK_ALLOC_FAILED(ret)   \
     {                                     \
