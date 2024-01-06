@@ -26,7 +26,7 @@ License:        MIT
 ExclusiveArch:  x86_64
 
 Source0:        %{url}/archive/refs/tags/rocm-%{rocm_version}.tar.gz#/%{upstreamname}-%{rocm_version}.tar.gz
-# Patch0:         0001-prepare-hipfft-cmake-for-fedora.patch
+Patch0:         0001-Use-system-s-rocfft-headers.patch
 
 BuildRequires:  cmake
 BuildRequires:  compiler-rt
@@ -40,7 +40,6 @@ BuildRequires:  rocm-comgr-devel
 BuildRequires:  rocm-hip-devel
 BuildRequires:  rocm-runtime-devel
 BuildRequires:  rocm-rpm-macros
-BuildRequires:  rocm-rpm-macros-modules
 BuildRequires:  rocprim-devel
 BuildRequires:  rocfft-devel
 
@@ -50,17 +49,14 @@ BuildRequires:  libomp-devel
 BuildRequires:  rocblas-devel
 %endif
 
-Requires:       rocm-rpm-macros-modules
-
 %description
-hipSPARSE is a SPARSE marshalling library with multiple
-supported backends. It sits between your application and
-a 'worker' SPARSE library, where it marshals inputs to
-the backend library and marshals results to your
-application. hipSPARSE exports an interface that doesn't
-require the client to change, regardless of the chosen
-backend. Currently, hipSPARSE supports rocSPARSE and
-cuSPARSE backends.
+hipFFT is an FFT marshalling library. Currently, hipFFT supports
+the rocFFT backends
+
+hipFFT exports an interface that does not require the client to
+change, regardless of the chosen backend. It sits between the
+application and the backend FFT library, marshalling inputs into
+the backend and results back to the application.
 
 %package devel
 Summary:        Libraries and headers for %{name}
@@ -107,13 +103,10 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 %{_libdir}/cmake/%{name}/*.cmake
 %{_libdir}/lib%{name}.so
 
-%if %{with test}
-%files test
-%{_bindir}/%{name}*
-%{_libdir}/rocm/gfx*/bin/%{name}*
-%endif
-
 %changelog
+* Sat Jan 6 2024 Tom Rix <trix@redhat.com> - 6.0.0-1
+- Update to 6.0.0
+
 * Wed Dec 20 2023 Tom Rix <trix@redhat.com>  - 5.7.1-1
 - Initial package
 
